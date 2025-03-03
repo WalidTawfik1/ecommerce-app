@@ -10,8 +10,8 @@ namespace Ecom.Core.Entities.Product
     public class Photo: BaseEntity<int>
     {
         public string ImageName { get; set; }
-        [ForeignKey("Product")]
+      //  [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
+      //  public virtual Product Product { get; set; }
     }
 }

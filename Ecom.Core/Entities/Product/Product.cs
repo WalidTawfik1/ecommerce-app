@@ -13,11 +13,13 @@ namespace Ecom.Core.Entities.Product
 
         public string Description { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal NewPrice { get; set; }
+
+        public decimal OldPrice { get; set; }
 
         public virtual List<Photo> Photos { get; set; }
 
-        [ForeignKey("Category")]
+       [ForeignKey("Category")]
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
