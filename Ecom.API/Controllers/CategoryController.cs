@@ -22,7 +22,7 @@ namespace Ecom.API.Controllers
                 var categories = await work.CategoryRepository.GetAllAsync();
                 if (categories == null)
                 {
-                    return BadRequest(new ResponseAPI(400));
+                    return BadRequest(new APIResponse(400));
                 }
                 return Ok(categories);
             }
@@ -39,7 +39,7 @@ namespace Ecom.API.Controllers
                 var category = await work.CategoryRepository.GetByIdAsync(id);
                 if (category == null)
                 {
-                    return BadRequest(new ResponseAPI(400,"This Category Not Found"));
+                    return BadRequest(new APIResponse(400,"This Category Not Found"));
                 }
                 return Ok(category);
             }
@@ -55,7 +55,7 @@ namespace Ecom.API.Controllers
             {
                 var category = mapper.Map<Category>(categoryDTO);
                 await work.CategoryRepository.AddAsync(category);
-                return Ok(new ResponseAPI(200,"Category added succssfully"));
+                return Ok(new APIResponse(200,"Category added succssfully"));
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace Ecom.API.Controllers
             {
                 var category = mapper.Map<Category>(updatecategoryDTO);
                 await work.CategoryRepository.UpdateAsync(category);
-                return Ok(new ResponseAPI(200, "Category updated succssfully"));
+                return Ok(new APIResponse(200, "Category updated succssfully"));
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace Ecom.API.Controllers
             try
             {
                 await work.CategoryRepository.DeleteAsync(id);
-                return Ok(new ResponseAPI(200, "Category removed succssfully"));
+                return Ok(new APIResponse(200, "Category removed succssfully"));
             }
             catch (Exception ex)
             {

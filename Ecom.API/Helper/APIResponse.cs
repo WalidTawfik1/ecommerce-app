@@ -2,9 +2,9 @@
 
 namespace Ecom.API.Helper
 {
-    public class ResponseAPI
+    public class APIResponse
     {
-        public ResponseAPI(int statusCode, string message = "Unknown")
+        public APIResponse(int statusCode, string message = null)
         {
             StatusCode = statusCode;
             Message = message ?? GetMessageFromStatusCode(StatusCode);

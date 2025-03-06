@@ -23,7 +23,7 @@ namespace Ecom.API.Controllers
                 var result = mapper.Map<List<ProductDTO>>(products);
                 if (products == null)
                 {
-                    return BadRequest(new ResponseAPI(400));
+                    return BadRequest(new APIResponse(400));
                 }
                 return Ok(result);
             }
@@ -42,7 +42,7 @@ namespace Ecom.API.Controllers
                 var result = mapper.Map<ProductDTO>(product);
                 if (product == null)
                 {
-                    return BadRequest(new ResponseAPI(400, "This Product Not Found"));
+                    return BadRequest(new APIResponse(400, "This Product Not Found"));
                 }
                 return Ok(result);
             }
@@ -59,11 +59,11 @@ namespace Ecom.API.Controllers
 
                 await work.ProductRepository.AddAsync(productDTO);
 
-                return Ok(new ResponseAPI(200, "Product added succssfully"));
+                return Ok(new APIResponse(200, "Product added succssfully"));
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseAPI (400,ex.Message));
+                return BadRequest(new APIResponse (400,ex.Message));
             }
         }
         [HttpPut("Update")]
@@ -72,11 +72,11 @@ namespace Ecom.API.Controllers
             try
             {
                 await work.ProductRepository.UpdateAsync(productDTO);
-                return Ok(new ResponseAPI(200, "Product updated succssfully"));
+                return Ok(new APIResponse(200, "Product updated succssfully"));
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseAPI(400, ex.Message));
+                return BadRequest(new APIResponse(400, ex.Message));
             }
         }
         [HttpDelete("Delete/{id}")]
@@ -87,11 +87,11 @@ namespace Ecom.API.Controllers
                 var product = await work.ProductRepository
                     .GetByIdAsync(id, x => x.Category, x => x.Photos);
                 await work.ProductRepository.DeleteAsync(product);
-                return Ok(new ResponseAPI(200, "Product deleted succssfully"));
+                return Ok(new APIResponse(200, "Product deleted succssfully"));
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseAPI(400, ex.Message));
+                return BadRequest(new APIResponse(400, ex.Message));
             }
         }
     }
